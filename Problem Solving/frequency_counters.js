@@ -54,39 +54,35 @@ function same2(arr1, arr2) {
 // console.log(same([1, 2, 4, 2], [9, 1, 4, 4]));
 // console.log(same2([1, 2, 4, 2], [9, 1, 4, 4]));
 
-
 // write an anagram algorithm
 
-function validAnagram(string1, string2){
-    if (string1.length !== string2.length){
-        return false
-    }
-    const frequencyCounter1 = {}
-    const frequencyCounter2 = {}
-    
-    for (var char of string1){
-        frequencyCounter1[char] = (frequencyCounter1[char] || 0) + 1
-    }
-    for (var char of string2){
-        frequencyCounter2[char] = (frequencyCounter2[char] || 0) + 1
-    }
+function validAnagram(string1, string2) {
+	if (string1.length !== string2.length) {
+		return false;
+	}
 
-    for ( var key in frequencyCounter1){
-        if(!(key in frequencyCounter2)){
-            return false
-        }
+	const lookup = {};
 
-        if(frequencyCounter1[key] !== frequencyCounter2[key]){
-            return false
-        }
-    }
-    return true
+	for (let i = 0; i < string1.length; i++) {
+		let letter = string1[i];
+		lookup[letter] ? (lookup[letter] += 1) : (lookup[letter] = 1);
+	}
+
+	for (let i = 0; i < string2.length; i++) {
+		let letter = string2[i];
+		if (!lookup[letter]) {
+			return false;
+		} else {
+			lookup[letter] -= 1;
+		}
+	}
+	return true;
 }
 
-console.log(validAnagram('aaz', 'zza')) // false
-console.log(validAnagram('anagram', 'nagaram')) // true
-console.log(validAnagram("rat","car")) // false) // false
-console.log(validAnagram('awesome', 'awesom')) // false
-console.log(validAnagram('amanaplanacanalpanama', 'acanalmanplanpamana')) // false
-console.log(validAnagram('qwerty', 'qeywrt')) // true
-console.log(validAnagram('texttwisttime', 'timetwisttext')) // true
+console.log(validAnagram("aaz", "zza")); // false
+console.log(validAnagram("anagram", "nagaram")); // true
+console.log(validAnagram("rat", "car")); // false) // false
+console.log(validAnagram("awesome", "awesom")); // false
+console.log(validAnagram("amanaplanacanalpanama", "acanalmanplanpamana")); // false
+console.log(validAnagram("qwerty", "qeywrt")); // true
+console.log(validAnagram("texttwisttime", "timetwisttext")); // true
