@@ -58,9 +58,8 @@ class SinglyLinkedList {
 
 	unshift(val) {
 		const newNode = new Node(val);
-		if (!this.head) 
-        {
-            this.head = newNode
+		if (!this.head) {
+			this.head = newNode;
 			this.tail = this.head;
 		}
 		newnode.next = this.head;
@@ -68,13 +67,86 @@ class SinglyLinkedList {
 		this.length++;
 		return this;
 	}
+
+	get(index) {
+		if (index < 0 || index >= this.length) return null;
+		let count = 0;
+		let current = this.head;
+		while (count <= this.length) {
+			current = current.next;
+			count++;
+		}
+		return current;
+	}
+
+	set(val, index) {
+		if (!this.head) return null;
+		let node = this.get(index);
+		if (node) {
+			node.val = val;
+			return true;
+		}
+		return false;
+	}
+
+	insert(val, index) {
+		if (index < 0 || index >= this.length) return false;
+		let newNode = new Node(val);
+		if (index === 0) !!this.unshift(val);
+		if (index === this.length - 1) {
+			return !!this.push(val);
+		}
+
+		let previous = this.get(index - 1);
+		newnode.next = previous.next;
+		previous.next = newNode;
+		this.length++;
+		return true;
+	}
+
+	remove(index) {
+		if (index < 0 || index >= this.length) return undefined;
+		if (index === 0) return this.shift();
+		if (index === this.length - 1) return this.pop();
+
+		let removed = this.get(index - 1);
+		removed.next = removed.next.next;
+		this.length++;
+		return removed;
+	}
+
+	reverse() {
+		let current = this.head;
+		this.head = this.tail;
+		this.tail = current;
+
+		let prev = null;
+		let next = null;
+		while (current) {
+			next = current.next;
+			current.next = prev;
+			prev = current;
+			current = next;
+		}
+		return this;
+	}
+
+	traverse() {
+		let current = this.head;
+
+		while (current) {
+			console.log(current.val);
+			current = current.next;
+		}
+	}
 }
 // const head = new Node("hello");
 // const node = new Node("there");
 // const node2 = new Node("how");
 const list = new SinglyLinkedList();
-list.push("hello");
-list.push("there");
-list.push("how");
-console.log(list.pop());
-console.log(list);
+list.push("one");
+list.push("two");
+list.push("three");
+list.push("four");
+console.log(list.reverse());
+list.traverse();
