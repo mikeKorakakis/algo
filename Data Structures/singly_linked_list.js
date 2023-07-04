@@ -72,7 +72,7 @@ class SinglyLinkedList {
 		if (index < 0 || index >= this.length) return null;
 		let count = 0;
 		let current = this.head;
-		while (count <= this.length) {
+		while (count !== index) {
 			current = current.next;
 			count++;
 		}
@@ -80,7 +80,6 @@ class SinglyLinkedList {
 	}
 
 	set(val, index) {
-		if (!this.head) return null;
 		let node = this.get(index);
 		if (node) {
 			node.val = val;
@@ -89,6 +88,7 @@ class SinglyLinkedList {
 		return false;
 	}
 
+   
 	insert(val, index) {
 		if (index < 0 || index >= this.length) return false;
 		let newNode = new Node(val);

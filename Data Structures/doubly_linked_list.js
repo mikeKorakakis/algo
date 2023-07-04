@@ -73,8 +73,68 @@ class DoublyLinkedList {
 		return this;
 	}
 
+	get(index) {
+		if (index < 0 || index >= this.length) return null;
+		let current;
+		if (index <= this.length / 2) {
+			let count = 0;
+			current = this.head;
+			while (count !== index) {
+				current = current.next;
+				count++;
+			}
+		} else {
+			let count = this.length - 1;
+			current = this.tail;
+			while (count !== index) {
+				current = current.prev;
+				count--;
+			}
+		}
+		return current;
+	}
+
+	set(val, index) {
+		var foundNode = this.get(index);
+		if (foundNode !== null) {
+			foundNode.val = val;
+			return true;
+		}
+		return false;
+	}
+
+	insert(val, index) {
+		if (index < 0 || index >= length) return false;
+		if (index === 0) return !!this.push(val);
+		if (index === this.length - 1) return !!this.unshift(val);
+		let newNode = new Node(val);
+		let previousNode = this.get(index - 1);
+		let nextNode = previousNode.next;
+
+		previousNode.next = newNode;
+		nextNode.prev = newNode;
+		newNode.next = nextNode;
+		newNode.prev = previousNode;
+		this.length++;
+		return true;
+	}
+
+	remove(index) {
+		if (index < 0 || index > this.length) return undefined;
+		if (index === 0) return this.shift();
+		if (index === this.length - 1) return this.pop();
+		let removedNode = this.get(index);
+		let nextNode = removedNode.next;
+		let previousNode = removedNode.prev;
+		previousNode.next = nextNode;
+		nextNode.prev = previousNode;
+		removedNode.prev = null;
+		previousNode.next = null;
+		this.length--;
+		return removedNode;
+	}
+
 	traverse() {
-		let current = this.head;
 		while (current) {
 			console.log(current.val);
 			current = current.next;
@@ -95,6 +155,8 @@ list.push("one");
 list.push("two");
 list.push("three");
 list.push("four");
-list.shift();
-list.traverse();
-list.traverse_inverse();
+// list.shift();
+// list.traverse();
+// list.traverse_inverse();
+
+console.log(list.get(2));
