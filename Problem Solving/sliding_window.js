@@ -9,18 +9,18 @@ console.log(maxSubArraySum([4, 2, 1, 6], 1));//6
 console.log(maxSubArraySum([4, 2, 1, 6, 2], 4));//13
 console.log(maxSubArraySum([], 4));//null
 
-function maxSubArraySum(arr, num) {
-	if (arr.length === 0) return null;
+// function maxSubArraySum(arr, num) {
+// 	if (arr.length === 0) return null;
 
-	var maxSum = 0;
-	for (var i = 0; i < num; i++) {
-		maxSum += arr[i];
-	}
-    let max = maxSum
-    for (var j = num; j < arr.length; j++){
-        max = max - arr[j - num] + arr[j]
-        if(max >= maxSum)  maxSum = max 
-    }
-    return maxSum
-    // console.log(maxSum)
-}
+// 	var maxSum = 0;
+// 	for (var i = 0; i < num; i++) {
+// 		maxSum += arr[i];
+// 	}
+//     let max = maxSum
+//     for (var j = num; j < arr.length; j++){
+//         max = max - arr[j - num] + arr[j]
+//         if(max >= maxSum)  maxSum = max 
+//     }
+//     return maxSum
+//     // console.log(maxSum)
+// }
