@@ -29,6 +29,7 @@ class Graph {
 		delete this.adjacencyList[vertex];
 	}
 
+
 	depthFirstRecursive(start) {
 		const result = [];
 		const adjacencyList = this.adjacencyList;
@@ -69,7 +70,7 @@ class Graph {
 	breadthFirst(start) {
 		const queue = [start];
 		const visited = {};
-        const result = []
+		const result = [];
 		visited[start] = true;
 		let currentVertex;
 		while (queue.length) {
@@ -101,6 +102,9 @@ graph.addEdge("D", "E");
 graph.addEdge("D", "F");
 graph.addEdge("E", "F");
 
+// "A" - "B" - "D" - "F"
+//  |           |     |
+// "C" - - - - "E" - -
 console.log(graph.depthFirstRecursive("A"));
 console.log(graph.depthFirstIterative("A"));
 console.log(graph.breadthFirst("A"));

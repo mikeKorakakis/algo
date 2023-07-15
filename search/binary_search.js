@@ -41,21 +41,40 @@ console.log(
 ); // -1
 
 function binarySearch(arr, num) {
-	let first = 0;
-	let second = arr.length - 1;
-	let middle = Math.floor((first, second) / 2);
+	let start = 0;
+	let end = arr.length - 1;
+	let middle = Math.floor(arr.length / 2);
 
-	while (first <= second) {
-        if(arr[first] === num) return first
-        if(arr[second] === num) return second
+	while (start < end) {
+		if (arr[start] === num) return start;
+		if (arr[end] === num) return end;
 		if (num > arr[middle]) {
-			first = middle + 1;
+			start = middle + 1;
 		} else if (num < arr[middle]) {
-			second = middle - 1;
+			end = middle - 1;
 		} else {
 			return middle;
 		}
-		middle = Math.floor((first + second) / 2);
+		middle = Math.floor((start + end) / 2);
 	}
 	return -1;
 }
+// function binarySearch(arr, num) {
+// 	let first = 0;
+// 	let second = arr.length - 1;
+// 	let middle = Math.floor((first, second) / 2);
+
+// 	while (first <= second) {
+//         if(arr[first] === num) return first
+//         if(arr[second] === num) return second
+// 		if (num > arr[middle]) {
+// 			first = middle + 1;
+// 		} else if (num < arr[middle]) {
+// 			second = middle - 1;
+// 		} else {
+// 			return middle;
+// 		}
+// 		middle = Math.floor((first + second) / 2);
+// 	}
+// 	return -1;
+// }

@@ -56,10 +56,11 @@ class BinarySearchTree {
 		return current;
 	}
 
-	bst() {
+	BFS() {
+		if (!this.root) return null;
 		const queue = [];
 		const data = [];
-		const node = this.root;
+		let node = this.root;
 		queue.push(this.root);
 		while (queue.length > 0) {
 			node = queue.shift();
@@ -75,6 +76,7 @@ class BinarySearchTree {
 	}
 
 	DFSPreorder() {
+		if (!this.root) return null;
 		const data = [];
 
 		function preorder(node) {
@@ -93,6 +95,7 @@ class BinarySearchTree {
 	}
 
 	DFSPostorder() {
+		if (!this.root) return null;
 		const data = [];
 
 		function preorder(node) {
@@ -111,6 +114,7 @@ class BinarySearchTree {
 	}
 
 	DFSInorder() {
+		if (!this.root) return null;
 		const data = [];
 
 		function preorder(node) {
@@ -131,6 +135,7 @@ class BinarySearchTree {
 
 const tree = new BinarySearchTree();
 tree.insert(10);
+tree.insert(18);
 tree.insert(6);
 tree.insert(15);
 tree.insert(3);
@@ -139,7 +144,10 @@ tree.insert(20);
 // console.log(tree.bst());
 
 //   10
-// 6     15
-//3 8      20
+// 6     18
+//3 8   15   20
 
+console.log(tree.DFSPreorder());
+console.log(tree.DFSPostorder());
 console.log(tree.DFSInorder());
+console.log(tree.BFS());
